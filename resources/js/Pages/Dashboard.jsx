@@ -76,9 +76,9 @@ export default function Dashboard({ confirmations, stats }) {
                                                             : '-'}
                                                     </td>
                                                     <td className="py-3 text-text-muted">
-                                                        {c.confirmed_at
-                                                            ? new Date(c.confirmed_at).toLocaleDateString('pt-BR')
-                                                            : '-'}
+                                                        {new Date(
+                                                            c.confirmed_at || c.created_at,
+                                                        ).toLocaleDateString('pt-BR')}
                                                     </td>
                                                 </tr>
                                             ))}
