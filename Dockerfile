@@ -7,10 +7,10 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
-    libsqlite3-dev \
+    libpq-dev \
     zip \
     unzip \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
+    && docker-php-ext-install pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Node.js 20
@@ -48,4 +48,4 @@ RUN mkdir -p storage/framework/{sessions,views,cache} \
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "touch /data/database.sqlite && php artisan migrate --force && php artisan seed:admin && php artisan serve --host=0.0.0.0 --port=8000"]
+CMD ["sh", "-c", "php artisan migrate --force && php artisan seed:admin && php artisan serve --host=0.0.0.0 --port=8000"]
