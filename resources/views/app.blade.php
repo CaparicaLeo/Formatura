@@ -13,10 +13,10 @@
         <!-- Scripts -->
         @routes
         @viteReactRefresh
-        @vite(['resources/js/app.jsx'])
-        @inertiaHead
+        @vite('resources/js/app.jsx')
+        <x-inertia::head />
     </head>
     <body class="font-sans antialiased">
-        @inertia
+        <x-inertia::app />
     </body>
 </html>
