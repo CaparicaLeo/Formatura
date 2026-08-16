@@ -1,8 +1,6 @@
 import GuestLayout from '@/Layouts/GuestLayout';
 import TerminalHeader from '@/Components/TerminalHeader';
-import SobreEvento from '@/Components/SobreEvento';
 import RsvpForm from '@/Components/RsvpForm';
-import Programacao from '@/Components/Programacao';
 import Footer from '@/Components/Footer';
 import { Head, useForm } from '@inertiajs/react';
 
@@ -46,28 +44,14 @@ export default function Confirmar({ event }) {
                 <div className="border-t border-border" />
             </div>
 
-            <SobreEvento />
-
-            <div className="px-6 md:px-12">
-                <div className="border-t border-border" />
-            </div>
-
-            <RsvpForm
-                form={form}
-                submit={submit}
-                addCompanion={addCompanion}
-                removeCompanion={removeCompanion}
-                updateCompanion={updateCompanion}
-            />
-
-            <div className="px-6 md:px-12">
-                <div className="border-t border-border" />
-            </div>
-
-            <Programacao />
-
-            <div className="px-6 md:px-12">
-                <div className="border-t border-border" />
+            <div className="py-8">
+                <RsvpForm
+                    form={form}
+                    submit={submit}
+                    addCompanion={addCompanion}
+                    removeCompanion={removeCompanion}
+                    updateCompanion={updateCompanion}
+                />
             </div>
 
             <Footer />

@@ -3,7 +3,6 @@ import gsap from 'gsap';
 
 export default function TerminalHeader({ event }) {
     const [displayedText, setDisplayedText] = useState('');
-    const [showCursor, setShowCursor] = useState(true);
     const [typingDone, setTypingDone] = useState(false);
     const cursorRef = useRef(null);
     const infoRef = useRef(null);
@@ -42,9 +41,9 @@ export default function TerminalHeader({ event }) {
         const ctx = gsap.context(() => {
             gsap.from(infoRef.current.children, {
                 opacity: 0,
-                y: 12,
-                duration: 0.5,
-                stagger: 0.1,
+                y: 8,
+                duration: 0.4,
+                stagger: 0.06,
                 ease: 'power2.out',
             });
         }, containerRef);
@@ -52,9 +51,9 @@ export default function TerminalHeader({ event }) {
     }, [typingDone]);
 
     return (
-        <section ref={containerRef} className="min-h-[70vh] flex flex-col justify-center px-6 md:px-12">
-            <div className="max-w-2xl">
-                <div className="text-2xl md:text-4xl font-bold text-text tracking-tight">
+        <section ref={containerRef} className="pt-12 pb-8 px-6 md:px-12">
+            <div className="max-w-xl">
+                <div className="text-xl md:text-3xl font-bold text-text tracking-tight mb-6">
                     <span className="text-accent">{'>'}</span>{' '}
                     <span>{displayedText}</span>
                     <span
@@ -63,20 +62,16 @@ export default function TerminalHeader({ event }) {
                     />
                 </div>
 
-                <div ref={infoRef} className="mt-8 space-y-3 text-text-muted text-sm md:text-base">
+                <div ref={infoRef} className="space-y-1.5 text-sm text-text-muted">
+                    <p>{event.graduate_name}</p>
+                    <p>Ciencia da Computacao — UNICENTRO</p>
                     <p>
-                        <span className="text-accent">{'>'}</span> {event.graduate_name}
+                        <span className="text-accent">colacao</span> {event.ceremony_date}{' '}
+                        <span className="text-border">|</span>{' '}
+                        <span className="text-accent">baile</span> {event.ball_date}
                     </p>
-                    <p>
-                        <span className="text-accent">{'>'}</span> Ciencia da Computacao — UNICENTRO
-                    </p>
-                    <p>
-                        <span className="text-accent">{'>'}</span> Colacao: {event.ceremony_date} | Baile: {event.ball_date}
-                    </p>
-                    <p>
-                        <span className="text-accent">{'>'}</span> {event.location}
-                    </p>
-                    <p className="mt-6 text-text italic">
+                    <p>{event.location}</p>
+                    <p className="mt-3 text-text-muted/60 text-xs">
                         "// o avancado e o basico bem feito"
                     </p>
                 </div>
