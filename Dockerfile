@@ -37,15 +37,10 @@ COPY . .
 # Build frontend assets
 RUN npm run build
 
-# Laravel optimizations
-RUN php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
-
 # Ensure storage and bootstrap/cache are writable
 RUN mkdir -p storage/framework/{sessions,views,cache} \
     && chmod -R 775 storage bootstrap/cache
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "php artisan migrate --force && php artisan seed:admin && php artisan serve --host=0.0.0.0 --port=8000"]
+CMD ["sh", "-c", "php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan migrate --force && php artisan seed:admin && php artisan serve --host=0.0.0.0 --port=8000"]
