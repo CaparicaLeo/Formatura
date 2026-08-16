@@ -10,7 +10,9 @@ Route::get('/', function () {
 });
 
 Route::get('/confirmar', [ConfirmationController::class, 'index'])->name('confirmations.index');
-Route::post('/confirmar', [ConfirmationController::class, 'store'])->name('confirmations.store');
+Route::post('/confirmar', [ConfirmationController::class, 'store'])
+    ->middleware('throttle:confirmar')
+    ->name('confirmations.store');
 Route::get('/confirmar/sucesso', [ConfirmationController::class, 'success'])->name('confirmations.success');
 
 Route::middleware(['auth', 'verified'])->group(function () {
