@@ -43,4 +43,4 @@ RUN mkdir -p storage/framework/{sessions,views,cache} \
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan migrate --force && php artisan seed:admin && php artisan serve --host=0.0.0.0 --port=8000"]
+CMD ["sh", "-c", "php artisan route:cache && php artisan view:cache && php artisan migrate --force && php artisan seed:admin && php artisan serve --host=0.0.0.0 --port=8000"]
