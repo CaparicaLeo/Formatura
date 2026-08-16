@@ -12,6 +12,7 @@ class Confirmation extends Model
         'phone',
         'companions',
         'confirmed_at',
+        'ip_address',
     ];
 
     protected $hidden = [
