@@ -13,10 +13,8 @@ class DashboardController extends Controller
     {
         $confirmations = Confirmation::latest()->paginate(15);
 
-        $totalPeople = Confirmation::sum('id') > 0
-            ? Confirmation::selectRaw('COUNT(*) + COALESCE(SUM(JSON_LENGTH(companions)), 0) as total')
-                ->value('total')
-            : 0;
+        $totalPeople = Confirmation::selectRaw('COUNT(*) + COALESCE(SUM(CASE WHEN companions IS NULL THEN 0 ELSE json_array_length(companions::json) END), 0) as total')
+            ->value('total');
 
         return Inertia::render('Dashboard', [
             'confirmations' => $confirmations,
